@@ -1,0 +1,54 @@
+#include <stdio.h>
+#define size 25
+typedef struct stack
+{
+  int stack[size];
+  int top;
+  int num;
+} stack;
+//pop function using for loop.
+void pop(stack *ptr)
+{
+  for (ptr->top; ptr->top >=0 ; ptr->top--)
+  {
+    printf("%d",ptr->stack[ptr->top]);
+  }
+
+}
+//push function
+void push(stack *ptr)
+{
+
+  while (ptr->num != 0)
+  {
+    //if the stack full.
+    if (ptr->top == size-1) 
+    {
+      printf("Overflow!");
+      break ;
+    }
+
+    ptr->top++;
+    ptr->stack[ptr->top] = ptr->num % 2;
+    ptr->num /= 2;
+  }
+  
+}
+//main function.
+int main()
+{
+  int choice;
+  stack s;
+  s.top = -1;
+  do
+  {
+  printf("Enter the Decimal number: ");
+  scanf("%d",&s.num);
+  push(&s);
+  pop(&s);
+  printf("\nwould you like to convert again:(Enter any number)or(0 to exit)\n");
+  scanf("%d",&choice);
+  } while (choice != 0);
+  
+  return 0;
+}
